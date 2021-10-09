@@ -1,0 +1,31 @@
+{
+  "name": "hackathon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cross-env NODE_ENV=production & node src/index.js",
+    "dev": "cross-env NODE_ENV=development & nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/equipe3-eng-software/hackathon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/equipe3-eng-software/hackathon/issues"
+  },
+  "homepage": "https://github.com/equipe3-eng-software/hackathon#readme",
+  "dependencies": {
+    "axios": "^0.22.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "nodemon": "^2.0.13"
+  }
+}
