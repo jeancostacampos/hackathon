@@ -2,12 +2,15 @@ require('dotenv').config()
 const express = require('express')
 const axios = require('axios')
 
+const AWS_IP = '3.238.232.253'
 const PORT = 5000
 const { TELEGRAM_API_TOKEN, NGROK_SERVER_URL } = process.env
 const TELEGRAM_API = `https://api.telegram.org/bot${TELEGRAM_API_TOKEN}`
 const URI = `/webhook/${TELEGRAM_API_TOKEN}`
 const WEBHOOK_URL =
-  process.env.NODE_ENV === 'production' ? URI : NGROK_SERVER_URL + URI
+  process.env.NODE_ENV === 'production'
+    ? `http://${AWS_IP}` + URI
+    : NGROK_SERVER_URL + URI
 
 const app = express()
 app.use(express.json())
