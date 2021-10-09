@@ -14,8 +14,8 @@ app.use(express.urlencoded({ extended: true }))
 
 const init = () => axios.get(`${TELEGRAM_API}/setWebhook?url=${WEBHOOK_URL}`)
 
-const respondMsg = async (chat_id, text) =>
-  await axios.post(`${TELEGRAM_API}/sendMessage`, { chat_id, text })
+const respondMsg = (chat_id, text) =>
+  axios.post(`${TELEGRAM_API}/sendMessage`, { chat_id, text })
 
 app.post(URI, async (req, res) => {
   const chatId = req.body.message.chat.id
