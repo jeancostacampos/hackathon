@@ -13,14 +13,7 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-const init = async () => {
-  console.log('Initializing Webhook')
-  const { data } = await axios.get(
-    `${TELEGRAM_API}/setWebhook?url=${WEBHOOK_URL}`
-  )
-  if (data.ok) console.log('OK')
-  else console.log('Error')
-}
+const init = () => axios.get(`${TELEGRAM_API}/setWebhook?url=${WEBHOOK_URL}`)
 
 const respondMsg = async (chat_id, text) =>
   await axios.post(`${TELEGRAM_API}/sendMessage`, { chat_id, text })
@@ -39,7 +32,14 @@ app.post(URI, async (req, res) => {
   return res.send()
 })
 
-app.listen(PORT, async () => {
+app.listen(PORT, () => {
   console.log('Server is running on port', PORT)
-  await init()
+  init()
+    .then(res => {
+      console.log(res.data.description)
+    })
+    .catch(err => {
+      console.log('Webhook error!!!')
+      console.log(err)
+    })
 })
