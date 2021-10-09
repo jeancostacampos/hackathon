@@ -8,9 +8,9 @@ const { TELEGRAM_API_TOKEN, NGROK_SERVER_URL } = process.env
 const TELEGRAM_API = `https://api.telegram.org/bot${TELEGRAM_API_TOKEN}`
 const URI = `/webhook/${TELEGRAM_API_TOKEN}`
 const WEBHOOK_URL =
-  process.env.NODE_ENV === 'production'
-    ? `http://${AWS_IP}` + URI
-    : NGROK_SERVER_URL + URI
+  (process.env.NODE_ENV === 'production'
+    ? `http://${AWS_IP}:${PORT}`
+    : NGROK_SERVER_URL) + URI
 
 const app = express()
 app.use(express.json())
